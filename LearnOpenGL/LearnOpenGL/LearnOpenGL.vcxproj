@@ -147,6 +147,15 @@
   <ItemGroup>
     <ClCompile Include="..\Libs\glad\src\glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ShaderProgram.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Fragment0.frag" />
+    <None Include="Shaders\Fragment1.frag" />
+    <None Include="Shaders\Vertex0.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

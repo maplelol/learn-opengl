@@ -3,6 +3,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "ShaderProgram.h"
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
@@ -89,38 +91,10 @@ int main() {
 
     glBindVertexArray(0);
 
-    const char* vertexShaderSource = "#version 330 core\n\
-            layout(location = 0) in vec3 aPos;\n\
-            void main()\n\
-            {\n\
-                gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n\
-            }";
-    unsigned int vertexShader = createShader(GL_VERTEX_SHADER, vertexShaderSource);
-
-    const char* fragmentShaderSource = "#version 330 core\n\
-            out vec4 FragColor;\n\
-            void main()\n\
-            {\n\
-                FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n\
-            }";
-    unsigned int fragmentShader = createShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
-
-    unsigned int shaderProgram = createShaderProgram(vertexShader, fragmentShader);
-
-    unsigned int vertexShader2 = createShader(GL_VERTEX_SHADER, vertexShaderSource);
-    const char* fragmentShaderSource2 = "#version 330 core\n\
-            out vec4 FragColor;\n\
-            void main()\n\
-            {\n\
-                FragColor = vec4(0.8f, 0.8f, 0.1f, 1.0f);\n\
-            }";
-    unsigned int fragmentShader2 = createShader(GL_FRAGMENT_SHADER, fragmentShaderSource2);
-    unsigned int shaderProgram2 = createShaderProgram(vertexShader2, fragmentShader2);
-
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-    glDeleteShader(vertexShader2);
-    glDeleteShader(fragmentShader2);
+    ShaderProgram shaderProgram;
+    if (!shaderProgram.initWithPath("Shaders/Vertex0.vert", "Shaders/Fragment1.frag")) {
+        return 1;
+    }
 
     while (!glfwWindowShouldClose(window))
     {
@@ -131,11 +105,9 @@ int main() {
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-        glUseProgram(shaderProgram);
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)0);
+        shaderProgram.use()
+            .setFloat4("myColor", 1.0f, 0.5f, 0.1f, 1.0f);
 
-        glUseProgram(shaderProgram2);
         glBindVertexArray(VAO2);
         glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)12);
         glBindVertexArray(0);
@@ -159,43 +131,4 @@ void processInput(GLFWwindow* window)
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
     }
-}
-
-unsigned int createShader(int shaderType, const char* shaderSource) {
-    unsigned int shader;
-    shader = glCreateShader(shaderType);
-    glShaderSource(shader, 1, &shaderSource, NULL);
-    glCompileShader(shader);
-
-    int success;
-    char infoLog[512];
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(shader, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::COMPILATION_FAILED\n" << infoLog << std::endl;
-        return 0;
-    }
-
-    return shader;
-}
-
-unsigned int createShaderProgram(unsigned int vertexShader, unsigned int fragmentShader) {
-    unsigned int shaderProgram;
-    shaderProgram = glCreateProgram();
-
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-
-    int success;
-    char infoLog[512];
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::PROGRAM::COMPILATION_FAILED\n" << infoLog << std::endl;
-        return 0;
-    }
-
-    return shaderProgram;
 }
