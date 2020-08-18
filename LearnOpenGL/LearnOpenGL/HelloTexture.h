@@ -27,7 +27,7 @@ public:
         _tex1 = _loadTexture("Textures/container.jpg");
         _tex2 = _loadTexture("Textures/awesomeface.png");
 
-        float vertices[] = {
+        GLfloat vertices[] = {
             //---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
             0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
             0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
@@ -43,21 +43,21 @@ public:
         glGenVertexArrays(1, &_vao);
         glBindVertexArray(_vao);
 
-        GLuint vbo;
+        GLuint vbo = 0;
         glGenBuffers(1, &vbo);
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-        unsigned int ebo;
+        GLuint ebo = 0;
         glGenBuffers(1, &ebo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)0);
         glEnableVertexAttribArray(0);
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3*sizeof(float)));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
         glEnableVertexAttribArray(1);
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
         glEnableVertexAttribArray(2);
 
         glBindVertexArray(0);
@@ -66,14 +66,17 @@ public:
             return false;
         }
 
+        _shaderProgram.use();
+
+        _shaderProgram
+            .setInt("mainTexture", 0)
+            .setInt("overlapTexture", 1);
+
         return true;
 	}
 
 	inline void render() {
         _shaderProgram.use();
-
-        _shaderProgram.setInt("mainTexture", 0);
-        _shaderProgram.setInt("overlapTexture", 1);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, _tex1);

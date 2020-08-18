@@ -6,7 +6,7 @@
 #include "HelloTriangle.h"
 #include "HelloTexture.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void framebuffer_size_callback(GLFWwindow* window, GLsizei width, GLsizei height);
 void processInput(GLFWwindow* window);
 
 int main() {
@@ -61,7 +61,7 @@ int main() {
 	return 0;
 }
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void framebuffer_size_callback(GLFWwindow* window, GLsizei width, GLsizei height)
 {
     glViewport(0, 0, width, height);
 }
