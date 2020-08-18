@@ -10,8 +10,6 @@
 class ShaderProgram
 {
 public:
-
-    // 构造器读取并构建着色器
     ShaderProgram();
     ~ShaderProgram();
 

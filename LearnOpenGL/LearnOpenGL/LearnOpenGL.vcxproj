@@ -80,7 +80,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Libs\glfw-3.3.2.bin.WIN64\include;$(SolutionDir)Libs\glad\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Libs\glfw-3.3.2.bin.WIN64\include;$(SolutionDir)Libs\glad\include;$(SolutionDir)Libs\stb;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libs\glfw-3.3.2.bin.WIN64\lib-vc2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,12 +150,20 @@
     <ClCompile Include="ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HelloTexture.h" />
+    <ClInclude Include="HelloTriangle.h" />
     <ClInclude Include="ShaderProgram.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment0.frag" />
     <None Include="Shaders\Fragment1.frag" />
+    <None Include="Shaders\FragmentTexture.frag" />
     <None Include="Shaders\Vertex0.vert" />
+    <None Include="Shaders\Vertex1.vert" />
+    <None Include="Shaders\VertexTexture.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\wall.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -16,6 +16,9 @@
     <Filter Include="资源文件\Shaders">
       <UniqueIdentifier>{bf24f4e5-6444-4ba3-98c7-5cb0c0c5e3de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="资源文件\Textures">
+      <UniqueIdentifier>{10afaf74-a8db-4e35-a5dc-95286fba1740}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -32,6 +35,12 @@
     <ClInclude Include="ShaderProgram.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="HelloTriangle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HelloTexture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment0.frag">
@@ -43,5 +52,19 @@
     <None Include="Shaders\Vertex0.vert">
       <Filter>资源文件\Shaders</Filter>
     </None>
+    <None Include="Shaders\Vertex1.vert">
+      <Filter>资源文件\Shaders</Filter>
+    </None>
+    <None Include="Shaders\FragmentTexture.frag">
+      <Filter>资源文件\Shaders</Filter>
+    </None>
+    <None Include="Shaders\VertexTexture.vert">
+      <Filter>资源文件\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Textures\wall.jpg">
+      <Filter>资源文件\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>
