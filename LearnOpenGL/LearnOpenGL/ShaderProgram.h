@@ -13,6 +13,8 @@ public:
     ShaderProgram();
     ~ShaderProgram();
 
+    inline GLuint Id() { return _program; }
+
     bool initWithPath(const GLchar* vertexPath, const GLchar* fragmentPath);
     bool initWithCode(const GLchar* vertexCode, const GLchar* fragmentCode);
 

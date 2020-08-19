@@ -41,6 +41,9 @@
     <ClInclude Include="HelloTexture.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="HelloTransform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment0.frag">
@@ -61,9 +64,18 @@
     <None Include="Shaders\VertexTexture.vert">
       <Filter>资源文件\Shaders</Filter>
     </None>
+    <None Include="Shaders\VertexTransform.vert">
+      <Filter>资源文件\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\wall.jpg">
+      <Filter>资源文件\Textures</Filter>
+    </Image>
+    <Image Include="Textures\awesomeface.png">
+      <Filter>资源文件\Textures</Filter>
+    </Image>
+    <Image Include="Textures\container.jpg">
       <Filter>资源文件\Textures</Filter>
     </Image>
   </ItemGroup>

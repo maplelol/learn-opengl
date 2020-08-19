@@ -3,8 +3,12 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb/stb_image.h>
+
 #include "HelloTriangle.h"
 #include "HelloTexture.h"
+#include "HelloTransform.h"
 
 void framebuffer_size_callback(GLFWwindow* window, GLsizei width, GLsizei height);
 void processInput(GLFWwindow* window);
@@ -36,7 +40,8 @@ int main() {
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     //HelloTriangle ex;
-    HelloTexture ex;
+    //HelloTexture ex;
+    HelloTransform ex;
     if (!ex.prepare()) {
         return 1;
     }
